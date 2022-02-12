@@ -16,6 +16,9 @@ class vehicalDetails(BaseModel):
 df = pd.read_excel('dataset.xlsx')
 df = df.drop(["_id"], axis=1)
 
+@app.get('/')
+    return f"Api Working"
+
 @app.post("/queryData")
 async def queryData(vDetails: vehicalDetails):
     filteredData = df.loc[(df['fuel'] == vDetails.fuel) & (df['seatingCapacity'] == vDetails.seatingCapacity)]
