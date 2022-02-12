@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
 from fuzzywuzzy import fuzz
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -16,16 +17,26 @@ class vehicalDetails(BaseModel):
 df = pd.read_excel('dataset.xlsx')
 df = df.drop(["_id"], axis=1)
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    return """Send POST request to /queryData with json data
-        Ex:
+    return """
+     <html>
+        <head>
+            <title>Zoop API</title>
+        </head>
+        <body>
+            <h1>Send POST request to /queryData with json data</h1>
+            <p>
+            Ex:
             {
                 "make":"mahindra",
                 "modelVariant" : "defgh",
                 "fuel": "diesel",
                 "seatingCapacity": 3
             }
+            </p>
+        </body>
+    </html>
     """
 
 @app.post("/queryData")
