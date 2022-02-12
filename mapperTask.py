@@ -18,7 +18,15 @@ df = df.drop(["_id"], axis=1)
 
 @app.get("/")
 async def root():
-    return f"Hello World"
+    return """Send POST request to /queryData with json data
+        Ex:
+            {
+                "make":"mahindra",
+                "modelVariant" : "defgh",
+                "fuel": "diesel",
+                "seatingCapacity": 3
+            }
+    """
 
 @app.post("/queryData")
 async def queryData(vDetails: vehicalDetails):
