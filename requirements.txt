@@ -3,3 +3,5 @@ fuzzywuzzy==0.18.0
 pandas==1.4.0
 pydantic==1.9.0
 uvicorn==0.17.4
+python-Levenshtein-wheels==0.13.2
+openpyxl==3.0.9
